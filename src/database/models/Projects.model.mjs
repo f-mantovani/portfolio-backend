@@ -1,11 +1,12 @@
 import createSchema from "./modelGenerator.mjs";
 
 const projectSchema = {
-  name: {
+  title: {
     type: String,
     required: true,
     trim: true,
     lowercase: true,
+    unique: true,
   },
   frontendLink: {
     type: String,
@@ -15,7 +16,11 @@ const projectSchema = {
   backendLink: {
     type: String,
     trim: true,
-  }
+  },
+  description: {
+    type: String,
+    trim: true,
+  },
 }
 
 

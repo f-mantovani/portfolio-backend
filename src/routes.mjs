@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import authRoutes from '../src/routes/user.routes.mjs'
+import projectRoutes from '../src/routes/project.routes.mjs'
 import notFound from './routes/not-found.mjs'
 
 const router = Router()
@@ -8,6 +9,8 @@ const router = Router()
 router.get('/health', (_, res) => res.status(200).json({ Message: 'Ok' }))
 
 router.use('/auth', authRoutes)
+
+router.use('/project', projectRoutes)
 
 router.use(notFound)
 

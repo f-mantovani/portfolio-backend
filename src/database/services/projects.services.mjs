@@ -13,8 +13,8 @@ const ProjectClass = {
 		return Projects.findByIdAndUpdate(id, project, { new: true })
 	},
 
-	getProject(id) {
-		return Projects.findById(id)
+	getProject(title) {
+		return Projects.findOne({ title })
 	},
 
 	getAllProjects() {
