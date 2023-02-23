@@ -10,4 +10,10 @@ function password(password) {
 	return passPattern.test(password)
 }
 
-export default { email, password }
+function url(url) {
+	const urlPattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+
+	return urlPattern.test(url)
+}
+
+export default { email, password, url }
