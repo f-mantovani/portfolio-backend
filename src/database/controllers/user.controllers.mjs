@@ -2,7 +2,7 @@ import User from '../services/user.services.mjs'
 import throwError from './utils/throwError.mjs'
 import passwordHandler from './utils/passwordHandlers.mjs'
 import inputChecker from './utils/inputChecker.mjs'
-import { generateToken, verifyToken } from './utils/tokenHandler.mjs'
+import { generateToken } from './utils/tokenHandler.mjs'
 
 const userController = {
 	async signup(req, res, next) {
@@ -62,12 +62,12 @@ const userController = {
 			const passwordChecked = await passwordHandler.verifyPassword(password, userFromDB.password)
 			throwError(!passwordChecked, `User not found or incorrect password`, `login`, 400)
 
-
 			const loggedUser = {
 				username: userFromDB.usernameToDisplay,
-				email: userFromDB.email
+				email: userFromDB.email,
+				isOwner: userFromDB.isOwner
 			}
-			
+		
 			const token = generateToken(loggedUser)
 
 			res.status(200).json(token)

@@ -6,7 +6,7 @@ const UserClass = {
 	},
 
 	findOne(username, email) {
-		return User.findOne({ $or: [{ username }, { email }] })
+		return User.findOne({ $or: [{ username }, { email }] }, {}, { lean: true})
 	},
 
 	deleteUsers() {
