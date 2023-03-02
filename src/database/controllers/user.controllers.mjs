@@ -41,6 +41,7 @@ const userController = {
 
 			res.status(200).json(newUser)
 		} catch (error) {
+			error.place = 'signup'
 			next(error)
 		}
 	},
@@ -72,6 +73,7 @@ const userController = {
 
 			res.status(200).json(token)
 		} catch (error) {
+			error.place = 'login'
 			next(error)
 		}
 	},
@@ -80,6 +82,7 @@ const userController = {
 		try {
 			if (req.payload) return res.status(200).json(req.payload)
 		} catch (error) {
+			error.place = 'verify'
 			next(error)
 		}
 	}

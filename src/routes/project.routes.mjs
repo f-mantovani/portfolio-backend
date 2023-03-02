@@ -7,4 +7,6 @@ const router = Router();
 
 router.post('/', verifyToken, projectController.createProject);
 
+router.get('/', projectController.getProjects);
+
 export default router;

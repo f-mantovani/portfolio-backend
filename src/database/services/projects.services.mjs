@@ -1,4 +1,5 @@
 import Projects from '../models/Projects.model.mjs'
+import queryAbstraction from './mongoose.services.mjs'
 
 const ProjectClass = {
 	createProject(project) {
@@ -18,7 +19,8 @@ const ProjectClass = {
 	},
 
 	getAllProjects() {
-		return Projects.find()
+		return queryAbstraction.getAll(Projects).select('-_id title')
+
 	},
 }
 

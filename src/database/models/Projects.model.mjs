@@ -21,6 +21,14 @@ const projectSchema = {
     type: String,
     trim: true,
   },
+  isHighlight:{ 
+    type: Boolean,
+    default: false,
+  },
+  techStack: {
+    type: [String],
+  }
+
 }
 
 

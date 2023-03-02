@@ -1,0 +1,28 @@
+const queryAbstraction = {
+  create(model, create){
+		return model.create(create)
+	},
+  
+  getOne(model, filter) {
+    return model.findOne(filter, {}, { lean: true })
+  },
+
+  getAll(model) {
+    return model.find()
+  },
+
+	updateById(model, id, update) {
+    return model.findByIdAndUpdate(id, update, { new: true, lean: true })
+	},
+
+  deleteById(model, id) {
+    return model.findByIdAndDelete(id)
+  },
+
+  deleteMany(model, filter){
+    return model.deleteMany(filter)
+  }
+
+}
+
+export default queryAbstraction
