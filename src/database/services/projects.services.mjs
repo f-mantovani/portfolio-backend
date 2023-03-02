@@ -11,11 +11,11 @@ const ProjectClass = {
 	},
 
 	updateProject(id, project) {
-		return queryAbstraction.updateById(Projects, id, project, { new: true })
+		return queryAbstraction.updateById(Projects, id, project, { runValidators: true })
 	},
 
-	getProject(title) {
-		return queryAbstraction.getOne(Projects, { title })
+	getProject(id) {
+		return queryAbstraction.getOne(Projects,  id)
 	},
 
 	getAllProjects() {

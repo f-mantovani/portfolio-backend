@@ -9,4 +9,8 @@ router.post('/', verifyToken, projectController.createProject);
 
 router.get('/', projectController.getProjects);
 
+router.get('/:projectId', projectController.getProject);
+
+router.put('/:projectId', verifyToken, projectController.updateProject);
+
 export default router;

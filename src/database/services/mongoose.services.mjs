@@ -4,15 +4,15 @@ const queryAbstraction = {
 	},
   
   getOne(model, filter) {
-    return model.findOne(filter, {}, { lean: true })
+    return model.findOne({ filter }, {}, { lean: true })
   },
 
   getAll(model) {
     return model.find()
   },
 
-	updateById(model, id, update) {
-    return model.findByIdAndUpdate(id, update, { new: true, lean: true })
+	updateById(model, id, update, options) {
+    return model.findByIdAndUpdate(id, update, {...options, new: true, lean: true })
 	},
 
   deleteById(model, id) {
