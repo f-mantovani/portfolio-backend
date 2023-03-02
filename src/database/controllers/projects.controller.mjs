@@ -22,7 +22,7 @@ const projectController = {
 			const projectExist = await Project.getProject(title)
 			throwError(projectExist, 'Project already exist', 'Create Project', 400)
 
-			const project = await Project.create(ProjectsModel, { frontendLink, backendLink, description, title, isHighlight, techStack })
+			const project = await Project.createProject({ frontendLink, backendLink, description, title, isHighlight, techStack })
 
 			res.status(201).json(project)
 		} catch (error) {
@@ -30,7 +30,7 @@ const projectController = {
 		}
 	},
 
-	async getProjects(req, res, next) {
+	async getProjects(_, res, next) {
 		try {
 			const projects = await Project.getAllProjects()
 

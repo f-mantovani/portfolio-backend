@@ -5,6 +5,7 @@ export function generateToken(payload) {
 	try {
 		return jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1 day' })
 	} catch (error) {
+		error.place = 'Generate token'
 		throw error
 	}
 }

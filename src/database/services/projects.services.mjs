@@ -3,23 +3,23 @@ import queryAbstraction from './mongoose.services.mjs'
 
 const ProjectClass = {
 	createProject(project) {
-		return Projects.create(project)
+		return queryAbstraction.create(Projects, project)   
 	},
 
 	deleteProject(id) {
-		return Projects.findByIdAndDelete(id)
+		return queryAbstraction.deleteById(Projects, id)
 	},
 
 	updateProject(id, project) {
-		return Projects.findByIdAndUpdate(id, project, { new: true })
+		return queryAbstraction.updateById(Projects, id, project, { new: true })
 	},
 
 	getProject(title) {
-		return Projects.findOne({ title })
+		return queryAbstraction.getOne(Projects, { title })
 	},
 
 	getAllProjects() {
-		return queryAbstraction.getAll(Projects).select('-_id title')
+		return queryAbstraction.getAll(Projects)
 
 	},
 }
