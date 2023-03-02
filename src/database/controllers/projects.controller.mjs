@@ -94,7 +94,17 @@ const projectController = {
 		}
 	},
 
-	async deleteProject(req, res, next) {},
+	async deleteProject(req, res, next) {
+		const { projectId } = req.params
+		try {
+      await Project.deleteProject(projectId)
+
+			return res.status(204).json()
+		} catch (error) {
+			error.place = 'Delete project'
+      next(error)
+		}
+	},
 }
 
 export default projectController

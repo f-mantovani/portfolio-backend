@@ -15,12 +15,11 @@ const ProjectClass = {
 	},
 
 	getProject(id) {
-		return queryAbstraction.getOne(Projects,  id)
+		return queryAbstraction.getOne(Projects, { id })
 	},
 
 	getAllProjects() {
 		return queryAbstraction.getAll(Projects)
-
 	},
 }
 

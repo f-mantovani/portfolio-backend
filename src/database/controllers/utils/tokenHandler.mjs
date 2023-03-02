@@ -21,7 +21,7 @@ export function verifyToken(req, _, next) {
 		const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
 		
 		req.payload = { ...decodedToken }
-
+		
 		next()
 	} catch (error) {
 		error.place = 'JWT middleware'

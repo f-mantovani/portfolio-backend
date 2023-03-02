@@ -4,7 +4,7 @@ const queryAbstraction = {
 	},
   
   getOne(model, filter) {
-    return model.findOne({ filter }, {}, { lean: true })
+    return model.findOne(filter, {}, { lean: true })
   },
 
   getAll(model) {
