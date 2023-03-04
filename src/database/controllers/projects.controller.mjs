@@ -19,12 +19,12 @@ const projectController = {
 				throwError(!backendRegex, 'Invalid backend link', 'Create Project', 400)
 			}
 
-			const projectExist = await Project.getProject(title)
+			const projectExist = await Project.getProject({title})
 			throwError(projectExist, 'Project already exist', 'Create Project', 400)
 
 			const newProject = { frontendLink, backendLink, description, title, isHighlight, techStack }
 
-			const project = await Project.createProject(newProject)
+			const project = await Project.createProject(newProject) 
 
 			res.status(201).json(project)
 		} catch (error) {
@@ -46,7 +46,7 @@ const projectController = {
 	async getProject(req, res, next) {
 		const { projectId } = req.params
 		try {
-			const project = await Project.getProject(projectId)
+			const project = await Project.getProject({projectId})
 
 			return res.status(200).json(project)
 		} catch (error) {

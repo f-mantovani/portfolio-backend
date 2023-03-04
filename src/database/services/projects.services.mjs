@@ -14,8 +14,8 @@ const ProjectClass = {
 		return queryAbstraction.updateById(Projects, id, project, { runValidators: true })
 	},
 
-	getProject(id) {
-		return queryAbstraction.getOne(Projects, { id })
+	getProject(filter) {
+		return queryAbstraction.getOne(Projects,  filter)
 	},
 
 	getAllProjects() {
