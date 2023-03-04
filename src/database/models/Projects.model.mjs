@@ -31,5 +31,4 @@ const projectSchema = {
 
 }
 
-
 export default createSchema(projectSchema, 'Project')

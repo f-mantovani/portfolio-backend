@@ -10,7 +10,7 @@ router.get('/health', (_, res) => res.status(200).json({ Message: 'Ok' }))
 
 router.use('/auth', authRoutes)
 
-router.use('/project', projectRoutes)
+router.use('/projects', projectRoutes)
 
 router.use(notFound)
 
