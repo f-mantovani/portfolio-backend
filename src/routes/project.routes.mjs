@@ -12,8 +12,8 @@ router.get('/', projectController.getProjects);
 
 router.get('/:projectId', projectController.getProject);
 
-router.put('/:projectId', verifyToken, projectController.updateProject);
+router.put('/:projectId', verifyToken, isOwner, projectController.updateProject);
 
-router.delete('/:projectId', verifyToken, projectController.deleteProject);
+router.delete('/:projectId', verifyToken, isOwner, projectController.deleteProject);
 
 export default router;
