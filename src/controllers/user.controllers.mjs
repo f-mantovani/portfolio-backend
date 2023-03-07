@@ -1,8 +1,8 @@
 import User from '../services/user.services.mjs'
-import throwError from './utils/throwError.mjs'
-import passwordHandler from './utils/passwordHandlers.mjs'
-import inputChecker from './utils/inputChecker.mjs'
-import { generateToken } from './utils/tokenHandler.mjs'
+import throwError from '../utils/throwError.mjs'
+import passwordHandler from '../utils/passwordHandlers.mjs'
+import inputChecker from '../utils/inputChecker.mjs'
+import { generateToken } from '../utils/tokenHandler.mjs'
 
 const userController = {
 	async signup(req, res, next) {

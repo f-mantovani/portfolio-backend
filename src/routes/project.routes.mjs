@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import projectController from "../database/controllers/projects.controller.mjs";
-import { verifyToken } from "../database/controllers/utils/tokenHandler.mjs";
+import projectController from "../controllers/projects.controller.mjs";
+import { verifyToken } from "../utils/tokenHandler.mjs";
 import { isOwner } from "../middleware/isOwner.mjs";
 
 const router = Router();

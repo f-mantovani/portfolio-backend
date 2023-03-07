@@ -1,6 +1,6 @@
 import Project from '../services/projects.services.mjs'
-import inputChecker from './utils/inputChecker.mjs'
-import throwError from './utils/throwError.mjs'
+import inputChecker from '../utils/inputChecker.mjs'
+import throwError from '../utils/throwError.mjs'
 
 const projectController = {
 	async createProject(req, res, next) {

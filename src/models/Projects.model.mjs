@@ -27,8 +27,8 @@ const projectSchema = {
   },
   techStack: {
     type: [String],
-  }
-
+  },
+  imageUrl: String,
 }
 
 export default createSchema(projectSchema, 'Project')
