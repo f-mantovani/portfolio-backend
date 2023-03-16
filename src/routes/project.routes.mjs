@@ -3,10 +3,11 @@ import { Router } from "express";
 import projectController from "../controllers/projects.controller.mjs";
 import { verifyToken } from "../utils/tokenHandler.mjs";
 import { isOwner } from "../middleware/isOwner.mjs";
+import fileUpload from '../configs/cloudinary.mjs'
 
 const router = Router();
 
-router.post('/', verifyToken, isOwner ,projectController.createProject);
+router.post('/', verifyToken, isOwner, projectController.createProject);
 
 router.get('/', projectController.getProjects);
 

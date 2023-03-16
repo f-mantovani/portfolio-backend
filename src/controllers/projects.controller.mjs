@@ -4,7 +4,7 @@ import throwError from '../utils/throwError.mjs'
 
 const projectController = {
 	async createProject(req, res, next) {
-		const { title, frontendLink, backendLink, description, isHighlight, techStack } = req.body
+		const { title, frontendLink, backendLink, description, isHighlight, techStack, imageUrl } = req.body
 
 		try {
 			if (!title || !frontendLink) {
@@ -22,7 +22,7 @@ const projectController = {
 			const projectExist = await Project.getProject({title})
 			throwError(projectExist, 'Project already exist', 'Create Project', 400)
 
-			const newProject = { frontendLink, backendLink, description, title, isHighlight, techStack }
+			const newProject = { frontendLink, backendLink, description, title, isHighlight, techStack, imageUrl }
 
 			const project = await Project.createProject(newProject) 
 
@@ -58,7 +58,7 @@ const projectController = {
 	async updateProject(req, res, next) {
 		const { projectId } = req.params
 
-		const { title, frontendLink, backendLink, description, isHighlight, techStack } = req.body
+		const { title, frontendLink, backendLink, description, isHighlight, techStack, imageUrl } = req.body
 
 		try {
 			if (!title || !frontendLink) {
@@ -80,6 +80,7 @@ const projectController = {
 				description,
 				isHighlight,
 				techStack,
+				imageUrl
 			}
 
 			const updatedProject = await Project.updateProject(projectId, toUpdateProject)

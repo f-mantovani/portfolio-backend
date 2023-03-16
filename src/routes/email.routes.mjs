@@ -18,15 +18,25 @@ router.post('/', async (req, res, next) => {
 
 		let transporter = nodemailer
 
-		const mailSent = await transporter.sendMail({
+		const mailSent = transporter.sendMail({
 			from: `"Felipe Mantovani" ${process.env.GMAIL_USER}`,
 			to: email,
 			subject: subject,
 			text: message,
-			bcc: process.env.EMAIL_BCC,
-			html: `<b> ${message} </b>`,
+			html: `<b> Thank you for your mesage, I'll be replying as soon as I can </b>`,
 		})
-		res.status(200).json({ message: mailSent })
+
+		const mailNotify = transporter.sendMail({
+			from: `"Felipe Mantovani" ${process.env.GMAIL_USER}`,
+      to: process.env.EMAIL_BCC,
+      subject: subject,
+      text: `<p> You received this ${message}</p>
+						 <p> Contact this ${email}	</p>`,
+		})
+
+		await Promise.all([mailSent, mailNotify])
+		
+		res.status(200).json({ message: 'You email has been sent successfully!' })
 	} catch (error) {
 		error.place = 'email'
 		next(error)
