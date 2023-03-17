@@ -57,7 +57,7 @@ const projectController = {
 
 	async updateProject(req, res, next) {
 		const { projectId } = req.params
-
+		
 		const { title, frontendLink, backendLink, description, isHighlight, techStack, imageUrl } = req.body
 
 		try {
