@@ -17,6 +17,10 @@ const projectSchema = {
     type: String,
     trim: true,
   },
+  liveAppLink: {
+    type: String,
+    trim: true,
+  },
   description: {
     type: String,
     trim: true,
@@ -29,6 +33,7 @@ const projectSchema = {
     type: [String],
   },
   imageUrl: String,
+  cardImage: String,
 }
 
 export default createSchema(projectSchema, 'Project')

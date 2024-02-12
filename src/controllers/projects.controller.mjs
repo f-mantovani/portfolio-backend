@@ -4,7 +4,17 @@ import throwError from '../utils/throwError.mjs'
 
 const projectController = {
 	async createProject(req, res, next) {
-		const { title, frontendLink, backendLink, description, isHighlight, techStack, imageUrl } = req.body
+		const {
+			title,
+			frontendLink,
+			backendLink,
+			liveAppLink,
+			description,
+			isHighlight,
+			techStack,
+			imageUrl,
+			cardImage,
+		} = req.body
 
 		try {
 			if (!title || !frontendLink) {
@@ -19,12 +29,27 @@ const projectController = {
 				throwError(!backendRegex, 'Invalid backend link', 'Create Project', 400)
 			}
 
-			const projectExist = await Project.getProject({title})
+			if (liveAppLink) {
+				const liveRegex = inputChecker.url(liveAppLink)
+				throwError(!liveRegex, 'Invalid live app link', 'Create Project', 400)
+			}
+
+			const projectExist = await Project.getProject({ title })
 			throwError(projectExist, 'Project already exist', 'Create Project', 400)
 
-			const newProject = { frontendLink, backendLink, description, title, isHighlight, techStack, imageUrl }
+			const newProject = {
+				frontendLink,
+				backendLink,
+				liveAppLink,
+				description,
+				title,
+				isHighlight,
+				techStack,
+				imageUrl,
+				cardImage,
+			}
 
-			const project = await Project.createProject(newProject) 
+			const project = await Project.createProject(newProject)
 
 			res.status(201).json(project)
 		} catch (error) {
@@ -35,7 +60,6 @@ const projectController = {
 	async getProjects(_, res, next) {
 		try {
 			const projects = await Project.getAllProjects()
-
 			return res.status(200).json(projects)
 		} catch (error) {
 			error.place = 'Get all projects'
@@ -46,7 +70,7 @@ const projectController = {
 	async getProject(req, res, next) {
 		const { projectId } = req.params
 		try {
-			const project = await Project.getProject({projectId})
+			const project = await Project.getProject({ projectId })
 
 			return res.status(200).json(project)
 		} catch (error) {
@@ -57,8 +81,19 @@ const projectController = {
 
 	async updateProject(req, res, next) {
 		const { projectId } = req.params
-		
-		const { title, frontendLink, backendLink, description, isHighlight, techStack, imageUrl } = req.body
+
+		const {
+			title,
+			frontendLink,
+			backendLink,
+			liveAppLink,
+			description,
+			isHighlight,
+			techStack,
+			imageUrl,
+			cardImage,
+		} = req.body
+		console.log(req.body)
 
 		try {
 			if (!title || !frontendLink) {
@@ -73,14 +108,21 @@ const projectController = {
 				throwError(!backendRegex, 'Invalid backend link', 'Create Project', 400)
 			}
 
+			if (liveAppLink) {
+				const liveRegex = inputChecker.url(liveAppLink)
+				throwError(!liveRegex, 'Invalid live app link', 'Create Project', 400)
+			}
+
 			const toUpdateProject = {
 				title,
 				frontendLink,
 				backendLink,
+				liveAppLink,
 				description,
 				isHighlight,
 				techStack,
-				imageUrl
+				imageUrl,
+				cardImage,
 			}
 
 			const updatedProject = await Project.updateProject(projectId, toUpdateProject)
@@ -98,12 +140,12 @@ const projectController = {
 	async deleteProject(req, res, next) {
 		const { projectId } = req.params
 		try {
-      await Project.deleteProject(projectId)
+			await Project.deleteProject(projectId)
 
 			return res.status(204).json()
 		} catch (error) {
 			error.place = 'Delete project'
-      next(error)
+			next(error)
 		}
 	},
 }
