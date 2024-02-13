@@ -10,7 +10,6 @@ const projectSchema = {
   },
   frontendLink: {
     type: String,
-    required: true,
     trim: true,
   },
   backendLink: {
